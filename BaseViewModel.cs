@@ -12,7 +12,7 @@ namespace LibraryDesktopWPF.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-        public void SetProperty<T>(string propName, bool value, T instance, [CallerMemberName] string commandProp = null)
+        public void Set<T>(string propName, bool value, T instance, [CallerMemberName] string commandProp = null)
         {
             PropertyInfo statusProperty = GetType().GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
             PropertyInfo commandProperty = instance.GetType().GetProperty(commandProp, BindingFlags.Public | BindingFlags.Instance);
