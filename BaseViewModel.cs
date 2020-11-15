@@ -25,6 +25,19 @@ namespace LibraryDesktopWPF.ViewModels
                 }
             }
         }
+        //xamarin push / pop page / alert
+        public async Task Alert(string title, string message, string cancel = "OK")
+        {
+            await App.Current.MainPage.DisplayAlert(title, message, cancel);
+        }
+        public async Task PushPage(Page page)
+        {
+            await App.Current.MainPage.Navigation.PushAsync(page);
+        }
+        public async Task PopPage()
+        {
+            await App.Current.MainPage.Navigation.PopAsync();
+        }
         private bool _isBusy;
         public bool IsBusy
         {
