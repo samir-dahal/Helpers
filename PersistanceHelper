@@ -1,0 +1,36 @@
+public static class PersistanceHelper
+    {
+        public static IDictionary<string, object> Preferences { get; set; } = new Dictionary<string, object>();
+        public static void Persist<T>(string key, T value)
+        {
+            if (Preferences.ContainsKey(key))
+            {
+                //in case if you accidentally add the same key
+                //update the current key value
+                Preferences.Remove(key);
+                Preferences.Add(key, value);
+                return;
+            }
+            Preferences.Add(key, value);
+        }
+        //if the value is reference type
+        //get the value by type
+        public static T GetValue<T>(string key) where T : class
+        {
+            if (Preferences.ContainsKey(key))
+            {
+                return Preferences[key] as T;
+            }
+            return null;
+        }
+        //if the value is not a reference type
+       //get the value and type cast it
+        public static object GetValue(string key)
+        {
+            if (Preferences.ContainsKey(key))
+            {
+                return Preferences[key];
+            }
+            return null;
+        }
+    }
